@@ -38,7 +38,7 @@ namespace Tic_Tac_Toe_proto
 							if (turn % 2 == 0)
 							{
 								Player p1 = new Player(Marks.Nought);
-								if (board.CheckPosition(p1.GetPosition(boardCell)))
+								if (board.CheckPosition(p1.GetPosition(boardCell), board.BoardState))
 								{
 									var newBoard = board.UpdateBoardState(p1.GetPosition(boardCell), p1);
 									Console.Clear();
@@ -57,7 +57,7 @@ namespace Tic_Tac_Toe_proto
 							else
 							{
 								Player p2 = new Player(Marks.Cross);
-								if (board.CheckPosition(p2.GetPosition(boardCell)))
+								if (board.CheckPosition(p2.GetPosition(boardCell), board.BoardState))
 								{
 									var newBoard = board.UpdateBoardState(p2.GetPosition(boardCell), p2);
 									Console.Clear();

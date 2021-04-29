@@ -22,20 +22,24 @@ namespace Tic_Tac_Toe_proto
 			{
 				return boardState;
 			}
+			set
+			{
+				boardState = value;
+			}
 		}
 
 		public String[,] UpdateBoardState(Position position, Player player)
 		{
-			if (CheckPosition(position))
+			if (CheckPosition(position, this.boardState))
 			{
 				boardState.SetValue(player.Mark, position.Row, position.Column);
 			}
 			return boardState;
 		}
 
-		public bool CheckPosition(Position position)
+		public bool CheckPosition(Position position, String[,] board)
 		{
-			var square = boardState.GetValue(position.Row, position.Column).ToString();
+			var square = board.GetValue(position.Row, position.Column).ToString();
 			if (string.IsNullOrWhiteSpace(square))
 			{
 				return true;
