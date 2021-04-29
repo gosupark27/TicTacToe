@@ -6,7 +6,7 @@ using Tic_Tac_Toe_proto;
 
 namespace TicTacToe.tests
 {
-	public class ErrorHandlingTest
+	public class ErrorHandlingTests
 	{
 		[Theory]
 		[InlineData('1',true)]

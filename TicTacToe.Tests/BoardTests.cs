@@ -9,7 +9,7 @@ namespace TicTacToe.tests
 	public class BoardTests
 	{
 		[Theory, MemberData(nameof(SplitBoardData))]
-		public void GetPosition_ReturnsCorrectPosition(Position testPosition, String[,] testBoard, bool expected)
+		public void CheckPosition_EmptyorTaken(Position testPosition, String[,] testBoard, bool expected)
 		{
 			// Arrange
 			Board board = new Board();

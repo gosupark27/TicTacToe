@@ -31,7 +31,7 @@ namespace Tic_Tac_Toe_proto
 			return false;
 		}
 		
-		bool CheckForTie(String[,] board)
+		public bool CheckForTie(String[,] board)
 		{ 
 			foreach(string square in board)
 			{
@@ -43,7 +43,7 @@ namespace Tic_Tac_Toe_proto
 			return true;
 		}
 
-		bool CheckForWin(String[,] board)
+		public bool CheckForWin(String[,] board)
 		{
 			bool checkWin = false;
 			var oneDimBoard = board.Cast<String>().ToList<String>();
