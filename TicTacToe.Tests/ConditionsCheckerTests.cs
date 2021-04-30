@@ -12,7 +12,7 @@ namespace TicTacToe.tests
 		public void CheckForWin_All8Combinations(String[,] testBoard, bool expected)
 		{
 			// Arrange
-			ConditionsChecker checker = new ConditionsChecker();
+			EndGameEvaluator checker = new ConditionsChecker();
 			// Act
 			var actual = checker.CheckForWin(testBoard);
 			// Assert
@@ -82,7 +82,7 @@ namespace TicTacToe.tests
 		public void CheckForTie_FullBoardIsTie(String[,] testBoard, bool expected)
 		{
 			// Arrange
-			ConditionsChecker checker = new ConditionsChecker();
+			EndGameEvaluator checker = new ConditionsChecker();
 			// Act
 			var actual = checker.CheckForTie(testBoard);
 			// Assert 

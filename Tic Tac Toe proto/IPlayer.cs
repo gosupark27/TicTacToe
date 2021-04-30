@@ -7,7 +7,8 @@ namespace Tic_Tac_Toe_proto
 	public interface IPlayer
 	{
 		public String Mark { get; }
-		Position GetPosition(int selectedNum);
-		int PositionToSquare();
+
+		public Position MakeMove();
+
 	}
 }

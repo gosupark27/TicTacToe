@@ -5,27 +5,27 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class ConditionsChecker
+	public class EndGameEvaluator
 	{
-		private bool isWin;
+		private bool isAWin;
+		private String[,] board;
 
-		public bool IsWin
+		public EndGameEvaluator(String[,] board)
 		{
-			get
-			{
-				return isWin;
-			}
+			this.board = board;
 		}
-		public bool Check(String[,] board)
+
+		public bool IsAWin => isAWin;
+		public bool Check()
 		{
-			if(CheckForTie(board))
+			if(CheckForTie(this.board))
 			{
-				isWin = false;
+				isAWin = false;
 				return true;
 			}
-			if (CheckForWin(board))
+			if (CheckForWin(this.board))
 			{
-				isWin = true;
+				isAWin = true;
 				return true;
 			}
 			return false;

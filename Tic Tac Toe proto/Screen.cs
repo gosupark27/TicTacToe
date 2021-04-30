@@ -43,5 +43,12 @@ namespace Tic_Tac_Toe_proto
 		{
 			Console.WriteLine(message);
 		}
+
+		public void DisplayErrorScreen()
+		{
+			Console.Clear();
+			DisplayExampleScreen();
+			Console.WriteLine("[ERROR: Invalid square - Please pick an empty square to mark.]\n");
+		}
 	}
 }

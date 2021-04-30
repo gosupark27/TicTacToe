@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class Position:IPosition
+	public class Position
 	{
 		int row;
 		int column;
@@ -25,7 +25,7 @@ namespace Tic_Tac_Toe_proto
 			}
 		}
 
-		public Position(int row, int column)
+		public Position(int row = 0, int column = 0)
 		{
 			this.row = row;
 			this.column = column;
