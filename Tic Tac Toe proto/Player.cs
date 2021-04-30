@@ -4,13 +4,15 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class Player
+	public class Player:IPlayer
 	{
-		string mark;
-		bool turn;
+		private string mark;
+		private bool turn;
+		private readonly IPosition _position;
 
-		public Player(String mark)
+		public Player(String mark, IPosition position)
 		{
+			_position = position;
 			this.mark = mark;
 		}
 
@@ -48,6 +50,19 @@ namespace Tic_Tac_Toe_proto
 				case 9: return new Position(2, 2);
 				default: return null;
 			}
+		}
+		public int PositionToSquare()
+		{
+			if (_position.Row == 0 && _position.Column == 0) { return 1; }
+			else if (_position.Row == 0 && _position.Column == 1) { return 2; }
+			else if (_position.Row == 0 && _position.Column == 2) { return 3; }
+			else if (_position.Row == 1 && _position.Column == 0) { return 4; }
+			else if (_position.Row == 1 && _position.Column == 1) { return 5; }
+			else if (_position.Row == 1 && _position.Column == 2) { return 6; }
+			else if (_position.Row == 2 && _position.Column == 0) { return 7; }
+			else if (_position.Row == 2 && _position.Column == 1) { return 8; }
+			else if (_position.Row == 2 && _position.Column == 2) { return 9; }
+			else { return -1; }
 		}
 	}
 }

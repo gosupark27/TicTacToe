@@ -6,7 +6,15 @@ namespace Tic_Tac_Toe_proto
 {
 	public class BoardRenderer
 	{
-		
+		public void DrawEmptyBoard()
+		{
+			Console.WriteLine("   |   |   ");
+			Console.WriteLine("---+---+---");
+			Console.WriteLine("   |   |   ");
+			Console.WriteLine("---+---+---");
+			Console.WriteLine("   |   |   ");
+		}
+
 		public void RenderBoard(String[,] board)
 		{
 			Console.WriteLine($" {board[0,0]} | {board[0,1]} | {board[0,2]} ");

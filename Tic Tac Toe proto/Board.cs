@@ -4,9 +4,17 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class Board
+	public class Board:IBoard
 	{
-		String[,] boardState = new string[3, 3] { { " ", " ", " " }, { " ", " ", " " }, { " ", " ", " " } };
+		private String[,] boardState = new string[3, 3] { { " ", " ", " " }, { " ", " ", " " }, { " ", " ", " " } };
+		private readonly IPlayer _player;
+		private readonly IPosition _position;
+
+		public Board(IPlayer player, IPosition position)
+		{
+			_player = player;
+			_position = position;
+		}
 		public void DrawBoard()
 		{
 			Console.WriteLine("   |   |   ");
@@ -28,23 +36,29 @@ namespace Tic_Tac_Toe_proto
 			}
 		}
 
-		public String[,] UpdateBoardState(Position position, Player player)
+		public String[,] UpdateBoardState()
 		{
-			if (CheckPosition(position, this.boardState))
+			if (CheckPosition(this.boardState))
 			{
-				boardState.SetValue(player.Mark, position.Row, position.Column);
+				boardState.SetValue(_player.Mark, _position.Row, _position.Column);
 			}
 			return boardState;
 		}
 
-		public bool CheckPosition(Position position, String[,] board)
+		public bool CheckPosition(String[,] board)
 		{
-			var square = board.GetValue(position.Row, position.Column).ToString();
+			var square = board.GetValue(_position.Row, _position.Column).ToString();
 			if (string.IsNullOrWhiteSpace(square))
 			{
 				return true;
 			}
+			//UpdateOptionsList();
 			return false;
 		}
+
+		//private void UpdateOptionsList(Position position)
+		//{
+		//	throw new NotImplementedException();
+		//}
 	}
 }
