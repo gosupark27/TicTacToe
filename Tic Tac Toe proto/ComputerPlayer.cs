@@ -6,14 +6,21 @@ namespace Tic_Tac_Toe_proto
 {
 	public class ComputerPlayer : IPlayer
 	{
-		private string mark;
+		private char mark;
 		private DualConverter converter;
 		private LegalMoveEvaluator LegalMoveHandler;
 		private readonly IGetInput _iGetInput;
-		public string Mark => mark;
+		private int turn;
+		public char Mark => mark;
+		public int Turn
+		{
+			get => turn;
+			set => turn = value;
+		}
 
 		public ComputerPlayer(IGetInput iGetInput)
 		{
+			turn = 8;
 			mark = Marks.Nought;
 			_iGetInput = iGetInput;
 			converter = new DualConverter();
@@ -23,6 +30,11 @@ namespace Tic_Tac_Toe_proto
 		{
 			var boardSquare = _iGetInput.GetGameBoardSquare();
 			return converter.ConvertSquareToPosition(boardSquare);
+		}
+
+		public void NextTurn()
+		{
+			turn -= 2;
 		}
 	}
 }

@@ -23,15 +23,15 @@ namespace Tic_Tac_Toe_proto
 		{
 			switch (square)
 			{
-				case 1: return new Position(0, 0);
-				case 2: return new Position(0, 1);
-				case 3: return new Position(0, 2);
-				case 4: return new Position(1, 0);
-				case 5: return new Position(1, 1);
-				case 6: return new Position(1, 2);
-				case 7: return new Position(2, 0);
-				case 8: return new Position(2, 1);
-				case 9: return new Position(2, 2);
+				case 0: return new Position(0, 0);
+				case 1: return new Position(0, 1);
+				case 2: return new Position(0, 2);
+				case 3: return new Position(1, 0);
+				case 4: return new Position(1, 1);
+				case 5: return new Position(1, 2);
+				case 6: return new Position(2, 0);
+				case 7: return new Position(2, 1);
+				case 8: return new Position(2, 2);
 				default: return null;
 			}
 		}

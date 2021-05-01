@@ -15,7 +15,7 @@ namespace Tic_Tac_Toe_proto
 			Console.WriteLine("   |   |   ");
 		}
 
-		public void RenderBoard(String[,] board)
+		public void RenderBoard(char[,] board)
 		{
 			Console.WriteLine($" {board[0,0]} | {board[0,1]} | {board[0,2]} ");
 			Console.WriteLine("---+---+---");

@@ -4,17 +4,21 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class Player:IPlayer
+
+	//Rename: HardComputerPlayer
+	public class Player
 	{
-		private string mark;
+		private char mark;
+		// TODO: Remove
 		private bool turn;
 		//private readonly IPosition _position;
 
-		public Player(String mark)
+		public Player(char mark)
 		{
 			this.mark = mark;
 		}
 
+		// TODO: Delete? 
 		public bool Turn
 		{
 			get
@@ -26,14 +30,8 @@ namespace Tic_Tac_Toe_proto
 				turn = value;
 			}
 		}
-
-		public String Mark
-		{
-			get
-			{
-				return mark;
-			}
-		}
+		
+		public char Mark => mark;
 
 		public Position MakeMove()
 		{

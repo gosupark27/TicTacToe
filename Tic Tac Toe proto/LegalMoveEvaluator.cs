@@ -6,20 +6,20 @@ namespace Tic_Tac_Toe_proto
 {
 	public class LegalMoveEvaluator
 	{
-		private readonly string[,] board;
+		private readonly char[,] board;
 		private bool isLegal;
 
 		public bool IsLegal => isLegal;
 
-		public LegalMoveEvaluator(string[,] board)
+		public LegalMoveEvaluator(char[,] board)
 		{
 			this.board = board;
 		}
 		
 		public void CheckPosition(Position position)
 		{
-			var square = board.GetValue(position.Row, position.Column).ToString();
-			if (string.IsNullOrWhiteSpace(square))
+			var square = (char)board.GetValue(position.Row, position.Column);
+			if (char.IsWhiteSpace(square))
 			{
 				isLegal = true;
 			}

@@ -56,11 +56,11 @@ namespace Tic_Tac_Toe_proto
 
 						if (LegalMoveHandler.IsLegal && gameBoard.Turn)
 						{
-							gameBoard.UpdateBoardState(player1, move);
+							gameBoard.UpdateBoardState(player1.Mark, move);
 						}
 						else
 						{
-							gameBoard.UpdateBoardState(player2, move);
+							gameBoard.UpdateBoardState(player2.Mark, move);
 						}
 						
 						Console.Clear();

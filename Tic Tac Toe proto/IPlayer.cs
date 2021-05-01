@@ -6,9 +6,12 @@ namespace Tic_Tac_Toe_proto
 {
 	public interface IPlayer
 	{
-		public String Mark { get; }
+		public char Mark { get; }
+		public int Turn { get; }
 
 		public Position MakeMove();
+
+		public void NextTurn();
 
 	}
 }
