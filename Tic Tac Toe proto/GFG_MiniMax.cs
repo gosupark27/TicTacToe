@@ -10,100 +10,106 @@ namespace Tic_Tac_Toe_proto
 		DualConverter converter = new DualConverter();
 		IPlayer player;
 		//same idea as isTie tbh
-		public bool isMovesLeft(char[,] board)
-		{
-			foreach (var square in board)
-			{
-				if (char.IsWhiteSpace(square))
-				{
-					return true;
-				}
-			}
-			return false;
-		}
 
+
+		public bool CheckTerminalNode(char[,] node)
+		{
+			var lineBoardEval = new LineBoard(node);
+			return lineBoardEval.CheckWin() || !lineBoardEval.IsMovesLeft();
+		}
 		// MiniMax Evaluate Func
 		// Refactor: Need to have another player?? Or just pass in the player...to the func
-		public double minimax(char[,] board, int depth, bool isMaximizer)
+		public double MiniMax(char[,] node, int depth, bool isMaximizer)
 		{
-			player = (isMaximizer) ? new HumanPlayer(new GetHumanInput()) : new EasyComputerPlayer(new GetEasyComputerInput());
-			
-			// Based on the current boardState see if the game is in a tie, win, or loss 
-			var lineBoardEval = new LineBoard(board);
-			double value = lineBoardEval.Evaluate();
+			//player = (isMaximizer) ? new HumanPlayer(new GetHumanInput()) : new EasyComputerPlayer(new GetEasyComputerInput());
 
-			if (value == 0 )
+			// Based on the current boardState see if the game is in a tie, win, or loss 
+
+			// Base case: If depth is zero or the game is over in the current board state  or check for da win! 
+			//if (value == 0)
+			//{
+			//	return value;
+			//}
+			//if(value > 0 && value <= 10)
+			//{
+			//	return value - depth - 1;
+			//}
+			//if (value < 0 && value >= -10)
+			//{
+			//	return value + depth + 1;
+			//}
+
+			// Base case for recursive function 
+			if (CheckTerminalNode(node))
 			{
-				return value;
-			}
-			else if (value%10 == 0)
-			{
-				return value / Math.Pow(10, (double)depth);
+				var lineBoardEval = new LineBoard(node);
+				//var terminalValue = (lineBoardEval.Evaluate() > 0) ? lineBoardEval.Evaluate() - depth : lineBoardEval.Evaluate() + depth;
+				if (lineBoardEval.Evaluate() == 0)
+					return 0;
+				return lineBoardEval.Evaluate();
 			}
 
 			if (isMaximizer)
 			{
-				double maxEval = double.NegativeInfinity;
-				int index = 0;
-				foreach (var square in board)
+				double maxValue = double.NegativeInfinity;
+				int index = 1;
+				foreach (var child in node)
 				{
-					// Pretty sure we are DRY & making an extra move for the player 
-					if (char.IsWhiteSpace(square))
+					if (char.IsWhiteSpace(child))
 					{
 						var position = converter.ConvertSquareToPosition(index);
-						// HumanPlayer.Mark or player1.Mark
-						board[position.Row, position.Column] = player.Mark;
-						var eval = minimax(board, depth + 1, !isMaximizer);
-						board[position.Row, position.Column] = ' ';
-						maxEval = Math.Max(maxEval, eval);
+						// HumanPlayer.Mark or player1.Mark ('X')
+						node[position.Row, position.Column] = 'X';
+						maxValue = Math.Max(maxValue, MiniMax(node, depth + 1, false));
+						node[position.Row, position.Column] = ' ';
 					}
 					index++;
 				}
-				return maxEval;
+				return maxValue;
 			}
 			else
 			{
-				double minEval = double.PositiveInfinity;
-				int index = 0;
-				foreach (var square in board)
+				double minValue = double.PositiveInfinity;
+				int index = 1;
+				foreach (var child in node)
 				{
-					if (char.IsWhiteSpace(square))
+					if (char.IsWhiteSpace(child))
 					{
 						var position = converter.ConvertSquareToPosition(index);
-						// ComputerPlayer.Mark or player2.Mark
-						board[position.Row, position.Column] = player.Mark;
-						var eval = minimax(board, depth + 1, !isMaximizer);
-						board[position.Row, position.Column] = ' ';
-						minEval = Math.Min(minEval, eval);
+						// ComputerPlayer.Mark or player2.Mark ('O')
+						node[position.Row, position.Column] = 'O';
+						minValue = Math.Min(minValue, MiniMax(node, depth + 1, true));
+						node[position.Row, position.Column] = ' ';
 					}
 					index++;
 				}
-				return minEval;
+				return minValue;
 			}
 		}
 
-		public Position FindBestMove(char[,] board, bool isMaximizer, IPlayer player = null)
+		// Is IPlayer param necessary? Can just use isMaximizer to initialize the player type
+		public Position FindBestMove(char[,] board)
 		{
 			// Since this is for the computer, e.g.the 'minimizer' we want the 
-			// loweest possible score!
-			double bestValue = double.PositiveInfinity;	
-			var bestMove = new Position();
-			if (player == null)
-			{
-				player = (isMaximizer) ? new HumanPlayer(new GetHumanInput()) : new EasyComputerPlayer(new GetEasyComputerInput());
-			}
+			// lowest possible score!
+			double bestValue = double.PositiveInfinity;
+			var bestMove = new Position(-1,-1);
+			//if (player == null)
+			//{
+			//	player = (isMaximizer) ? new HumanPlayer(new GetHumanInput()) : new EasyComputerPlayer(new GetEasyComputerInput());
+			//}
 
-			int index = 0;
+			int index = 1;
 			foreach (var square in board)
 			{
 				if (char.IsWhiteSpace(square))
 				{
 					var position = converter.ConvertSquareToPosition(index);
-					board[position.Row, position.Column] = player.Mark;
+					board[position.Row, position.Column] = 'O';
 					// depth should be player.Turn 
-					double nextMoveValue = minimax(board, 0, isMaximizer);
+					double nextMoveValue = MiniMax(board, 0, true);
 					board[position.Row, position.Column] = ' ';
-					if (nextMoveValue <= bestValue)
+					if (nextMoveValue < bestValue)
 					{
 						bestMove = position;
 						bestValue = nextMoveValue;
@@ -142,6 +148,18 @@ namespace Tic_Tac_Toe_proto
 				index++;
 			}
 
+		}
+
+		public bool IsMovesLeft()
+		{
+			foreach (var square in board)
+			{
+				if (char.IsWhiteSpace(square))
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 
 		private bool IsThreeInARow(int i, int j, int k, char mark)
@@ -183,12 +201,12 @@ namespace Tic_Tac_Toe_proto
 
 		public double Evaluate()
 		{
-			double boardValue = 7;
+			double boardValue = 100;
 			if (CheckWin())
 			{
-				boardValue = (this.mark == 'X') ? Math.Pow(10,9) : Math.Pow(-10, 9);
+				boardValue = (this.mark == 'X') ? 10 : -10; //Math.Pow(10,9) : Math.Pow(-10, 9);
 			}
-			else if (!gfg.isMovesLeft(board))
+			else if (!IsMovesLeft())
 			{
 				boardValue = 0;
 			}

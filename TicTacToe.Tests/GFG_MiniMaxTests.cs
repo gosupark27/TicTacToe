@@ -16,7 +16,7 @@ namespace TicTacToe.tests
 			GFG_MiniMax miniMax = new GFG_MiniMax();
 
 			// Act
-			var actual = miniMax.minimax(board, depth, isMaximizingPlayer);
+			var actual = miniMax.MiniMax(board, depth, isMaximizingPlayer);
 
 			// Assert 
 			Assert.Equal(expected, actual);

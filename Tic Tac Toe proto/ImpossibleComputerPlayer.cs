@@ -14,12 +14,10 @@ namespace Tic_Tac_Toe_proto
 		public char Mark => mark;
 
 
-		public ImpossibleComputerPlayer(IGetInput<char[,]> iGetInput, IPlayer player)
+		public ImpossibleComputerPlayer(IGetInput<char[,]> iGetInput)
 		{
 			mark = Marks.Nought;
 			_iGetInput = iGetInput;
-			_player = player;
-			miniMax = new GFG_MiniMax();
 			miniMax = new GFG_MiniMax();
 			board = _iGetInput.GetGameBoardSquare();
 		}
@@ -27,7 +25,7 @@ namespace Tic_Tac_Toe_proto
 
 		public Position MakeMove()
 		{
-			return miniMax.FindBestMove(board, false, _player);
+			return miniMax.FindBestMove(board);
 		}
 
 	}
