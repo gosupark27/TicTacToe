@@ -32,6 +32,8 @@ namespace Tic_Tac_Toe_proto
 			return converter.ConvertSquareToPosition(boardSquare);
 		}
 
+		
+
 		public void NextTurn()
 		{
 			turn -= 2;
