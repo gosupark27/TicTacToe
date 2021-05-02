@@ -4,23 +4,16 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class ComputerPlayer : IPlayer
+	public class EasyComputerPlayer : IPlayer
 	{
 		private char mark;
 		private DualConverter converter;
-		private LegalMoveEvaluator LegalMoveHandler;
-		private readonly IGetInput _iGetInput;
-		private int turn;
-		public char Mark => mark;
-		public int Turn
-		{
-			get => turn;
-			set => turn = value;
-		}
+		private readonly IGetInput<int> _iGetInput;
 
-		public ComputerPlayer(IGetInput iGetInput)
+		public char Mark => mark;
+
+		public EasyComputerPlayer(IGetInput<int> iGetInput)
 		{
-			turn = 8;
 			mark = Marks.Nought;
 			_iGetInput = iGetInput;
 			converter = new DualConverter();
@@ -30,13 +23,6 @@ namespace Tic_Tac_Toe_proto
 		{
 			var boardSquare = _iGetInput.GetGameBoardSquare();
 			return converter.ConvertSquareToPosition(boardSquare);
-		}
-
-		
-
-		public void NextTurn()
-		{
-			turn -= 2;
 		}
 	}
 }

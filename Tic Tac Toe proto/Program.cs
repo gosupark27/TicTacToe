@@ -28,8 +28,8 @@ namespace Tic_Tac_Toe_proto
 					br.DrawEmptyBoard();
 
 					// Initialize players & assets
-					HumanPlayer player1 = new HumanPlayer(new GetUserInput());
-					ComputerPlayer player2 = new ComputerPlayer(new GetComputerInput());
+					HumanPlayer player1 = new HumanPlayer(new GetHumanInput());
+					EasyComputerPlayer player2 = new EasyComputerPlayer(new GetEasyComputerInput());
 					Board gameBoard = new Board();
 					EndGameEvaluator gameEvaluator = new EndGameEvaluator(gameBoard.BoardState);
 					LegalMoveEvaluator LegalMoveHandler = new LegalMoveEvaluator(gameBoard.BoardState);

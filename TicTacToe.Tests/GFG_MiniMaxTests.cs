@@ -96,14 +96,14 @@ namespace TicTacToe.tests
 						board.BoardState = new char[,]{{ 'X', 'O', 'X' },{ 'O', 'O', 'X' },{ 'X', ' ', ' ' }},
 						false,
 						new Position(2,1),
-						new ComputerPlayer(new GetUserInput())
+						new EasyComputerPlayer(new GetHumanInput())
 					},
 					new object[]
 					{
 						board.BoardState = new char[,]{ { 'X', 'O', 'O' }, { 'X', 'O', ' ' }, { ' ', 'X', 'X' } },
 						false,
 						new Position(2,0),
-						new ComputerPlayer(new GetUserInput())
+						new EasyComputerPlayer(new GetHumanInput())
 					},
 					
 					

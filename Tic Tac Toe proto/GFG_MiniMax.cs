@@ -26,7 +26,7 @@ namespace Tic_Tac_Toe_proto
 		// Refactor: Need to have another player?? Or just pass in the player...to the func
 		public double minimax(char[,] board, int depth, bool isMaximizer)
 		{
-			player = (isMaximizer) ? new HumanPlayer(new GetUserInput()) : new ComputerPlayer(new GetComputerInput());
+			player = (isMaximizer) ? new HumanPlayer(new GetHumanInput()) : new EasyComputerPlayer(new GetEasyComputerInput());
 			
 			// Based on the current boardState see if the game is in a tie, win, or loss 
 			var lineBoardEval = new LineBoard(board);
@@ -90,7 +90,7 @@ namespace Tic_Tac_Toe_proto
 			var bestMove = new Position();
 			if (player == null)
 			{
-				player = (isMaximizer) ? new HumanPlayer(new GetUserInput()) : new ComputerPlayer(new GetComputerInput());
+				player = (isMaximizer) ? new HumanPlayer(new GetHumanInput()) : new EasyComputerPlayer(new GetEasyComputerInput());
 			}
 
 			int index = 0;
