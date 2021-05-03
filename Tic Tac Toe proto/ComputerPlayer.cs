@@ -8,7 +8,6 @@ namespace Tic_Tac_Toe_proto
 	{
 		private char mark;
 		private readonly IGetInput<char[,]> _iGetInput;
-		private readonly IPlayer _player;
 		private MiniMaxAlgo miniMax;
 		private char[,] board;
 		public char Mark => mark;

@@ -22,11 +22,11 @@ namespace Tic_Tac_Toe_proto
 				// Initialize players & assets
 				HumanPlayer player1 = new HumanPlayer(new GetHumanInput());
 				ComputerPlayer player2 = new ComputerPlayer(new GetComputerInput(gameBoard.BoardState));
-				EndGameEvaluator gameEvaluator = new EndGameEvaluator(gameBoard.BoardState);
+				GameState gameEvaluator = new GameState(gameBoard.BoardState);
 				LegalMoveEvaluator LegalMoveHandler = new LegalMoveEvaluator(gameBoard.BoardState);
 				ConsoleKey key;
 
-				while (!gameEvaluator.Check())
+				while (!gameEvaluator.CheckWin() && gameEvaluator.CheckEmptySquares())
 				{
 					var move = (gameBoard.Turn) ? player1.MakeMove() : player2.MakeMove();
 					LegalMoveHandler.CheckPosition(move);
@@ -60,7 +60,7 @@ namespace Tic_Tac_Toe_proto
 					br.RenderBoard(gameBoard.BoardState);
 
 				}
-				scrn.Message = (gameEvaluator.IsAWin) ? "\nWe have a winner!" : "\nGame Over! Cat's game.";
+				scrn.Message = (gameEvaluator.CheckWin()) ? "\nWe have a winner!" : "\nGame Over! Cat's game.";
 				scrn.DisplayResultScreen();
 				Console.WriteLine("Press R to start a new game and any other key to quit the application");
 				key = Console.ReadKey(true).Key;

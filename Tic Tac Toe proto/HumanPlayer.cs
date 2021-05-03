@@ -9,7 +9,7 @@ namespace Tic_Tac_Toe_proto
 		private char mark;
 		private readonly IGetInput<int> _iGetInput;
 		private DualConverter converter;
-		private int turn;
+
 		public char Mark => mark;
 		
 		public HumanPlayer(IGetInput<int> iGetInput)

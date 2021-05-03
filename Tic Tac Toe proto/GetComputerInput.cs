@@ -16,6 +16,5 @@ namespace Tic_Tac_Toe_proto
 		{
 			return board;
 		}
-
 	}
 }

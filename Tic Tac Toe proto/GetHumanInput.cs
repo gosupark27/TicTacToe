@@ -11,6 +11,9 @@ namespace Tic_Tac_Toe_proto
 		{
 			errHandler = new ErrorHandling();
 		}
+
+		// Before testing this, make sure to refactor the
+		// method signature as such: int GetGameBoardSquare(int)
 		public int GetGameBoardSquare()
 		{
 			Console.WriteLine("\nMake a move:");

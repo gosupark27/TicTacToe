@@ -43,14 +43,14 @@ namespace TicTacToe.tests
 						board.BoardState = new char[,]{ { 'X', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
 						board.BoardState = new char[,]{ { 'X', ' ', ' ' }, { ' ', 'O', ' ' }, { ' ', ' ', ' ' } },
 						new Position(1,1),
-						new EasyComputerPlayer(new GetEasyComputerInput())
+						new ComputerPlayer(new GetComputerInput(new char[,]{ { 'X', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } }))
 					},
 					new object[]
 					{
 						board.BoardState = new char[,]{ { 'X', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
 						board.BoardState = new char[,]{ { 'O', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
 						new Position(0,0),
-						new EasyComputerPlayer(new GetEasyComputerInput())
+						new ComputerPlayer(new GetComputerInput(new char[,]{ { 'X', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } }))
 					},
 				};
 			}
