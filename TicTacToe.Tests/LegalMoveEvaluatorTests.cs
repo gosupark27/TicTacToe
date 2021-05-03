@@ -8,7 +8,7 @@ namespace TicTacToe.tests
 {
 	public class LegalMoveEvaluatorTests
 	{
-		[Theory, MemberData(nameof(SplitBoardData))]
+		[Theory, MemberData(nameof(CheckPositionData))]
 		public void CheckPosition_EmptyOrTaken(Position testPosition, char[,] testBoard, bool expected)
 		{
 			// Arrange
@@ -20,7 +20,7 @@ namespace TicTacToe.tests
 			Assert.Equal(expected, actual);
 		}
 
-		public static IEnumerable<object[]> SplitBoardData
+		public static IEnumerable<object[]> CheckPositionData
 		{
 
 			get

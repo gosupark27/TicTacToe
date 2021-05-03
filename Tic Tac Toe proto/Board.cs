@@ -12,7 +12,6 @@ namespace Tic_Tac_Toe_proto
 
 		public bool Turn => turn;
 
-		// For now in order to see if the helper function will work...
 		public char[,] BoardState
 		{
 			set => boardState = value;

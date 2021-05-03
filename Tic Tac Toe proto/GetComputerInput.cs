@@ -8,6 +8,11 @@ namespace Tic_Tac_Toe_proto
 	{
 		private char[,] board;
 
+		public char[,] Board
+		{
+			get => board;
+		}
+
 		public GetComputerInput(char[,] board)
 		{
 			this.board = board;

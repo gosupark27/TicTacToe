@@ -8,5 +8,11 @@ namespace TicTacToe.tests
 {
 	public class GetHumanInputTests
 	{
+		public void GetGameBoardSquare_CheckSquare()
+		{
+
+		}
+
+
 	}
 }

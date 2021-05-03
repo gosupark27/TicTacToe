@@ -12,10 +12,11 @@ namespace TicTacToe.tests
 		public void ConvertPositionToSquare_CheckSquare(Position testValue, int expected)
 		{
 			// Arrange 
-
+			DualConverter converter = new DualConverter();
 			// Act
-
+			var actual = converter.ConvertPositionToSquare(testValue);
 			// Assert
+			Assert.Equal(expected, actual);
 		}
 
 		public static IEnumerable<object[]> ConvertPositionToSquareData
@@ -71,7 +72,7 @@ namespace TicTacToe.tests
 					},
 					new object[]
 					{
-						10,
+						new Position(-1,-1),
 						-1
 					},
 				};
@@ -82,10 +83,11 @@ namespace TicTacToe.tests
 		public void ConvertSquareToPosition_CheckPosition(int testValue, Position expected)
 		{
 			// Arrange 
-
+			DualConverter converter = new DualConverter();
 			// Act
-
+			var actual = converter.ConvertSquareToPosition(testValue);
 			// Assert
+			Assert.Equal(expected, actual);
 		}
 
 		public static IEnumerable<object[]> ConvertSquareToPositionData
