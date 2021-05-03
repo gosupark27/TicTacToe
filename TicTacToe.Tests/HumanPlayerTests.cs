@@ -12,11 +12,11 @@ namespace TicTacToe.tests
 	{
 		[Theory, MemberData(nameof(MakeMoveData))]
 
-		public void MakeMove_CheckPosition(int square, Position expected)
+		public void MakeMove_CheckPosition(int testValue, Position expected)
 		{
 			// Arrange
 			var humanInputMock = new Mock<IGetInput<int>>();
-			humanInputMock.Setup(p => p.GetGameBoardSquare()).Returns(square);
+			humanInputMock.Setup(p => p.GetGameBoardSquare()).Returns(testValue);
 			HumanPlayer player = new HumanPlayer(humanInputMock.Object);
 
 			// Act 
