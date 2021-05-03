@@ -9,7 +9,7 @@ namespace Tic_Tac_Toe_proto
 		private char mark;
 		private readonly IGetInput<char[,]> _iGetInput;
 		private readonly IPlayer _player;
-		private GFG_MiniMax miniMax;
+		private MiniMaxAlgo miniMax;
 		private char[,] board;
 		public char Mark => mark;
 
@@ -18,7 +18,7 @@ namespace Tic_Tac_Toe_proto
 		{
 			mark = Marks.Nought;
 			_iGetInput = iGetInput;
-			miniMax = new GFG_MiniMax();
+			miniMax = new MiniMaxAlgo();
 			board = _iGetInput.GetGameBoardSquare();
 		}
 

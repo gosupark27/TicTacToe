@@ -34,6 +34,12 @@ namespace Tic_Tac_Toe_proto
 		public void UpdateBoardState(char mark, Position position)
 		{
 			boardState.SetValue(mark, position.Row, position.Column);
+			SetTurn();
+		}
+
+		private void SetTurn()
+		{
+			turn = !turn;
 		}
 	}
 }

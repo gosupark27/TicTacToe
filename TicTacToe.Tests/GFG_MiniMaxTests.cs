@@ -13,7 +13,7 @@ namespace TicTacToe.tests
 		public void CheckMiniMax_Score(char[,] board, int depth, bool isMaximizingPlayer, int expected)
 		{
 			// Arrange
-			GFG_MiniMax miniMax = new GFG_MiniMax();
+			MiniMaxAlgo miniMax = new MiniMaxAlgo();
 
 			// Act
 			var actual = miniMax.MiniMax(board, depth, isMaximizingPlayer);
@@ -76,9 +76,9 @@ namespace TicTacToe.tests
 		public void CheckFindBestMove(char[,] board, bool isMaximizingPlayer, Position expected, IPlayer player)
 		{
 			// Arrange
-			GFG_MiniMax miniMax = new GFG_MiniMax();
+			MiniMaxAlgo miniMax = new MiniMaxAlgo();
 			// Act
-			var actual = miniMax.FindBestMove(board, isMaximizingPlayer, player);
+			var actual = miniMax.FindBestMove(board);
 			// Assert
 			expected.Should().BeEquivalentTo(actual);
 		}
