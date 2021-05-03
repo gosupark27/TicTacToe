@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public interface IGetInput
+	public interface IGetInput<T>
 	{
-		public int GetGameBoardSquare();
+		public T GetGameBoardSquare();
 	}
 }

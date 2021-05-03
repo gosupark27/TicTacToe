@@ -4,15 +4,15 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class ComputerPlayer : IPlayer
+	public class EasyComputerPlayer : IPlayer
 	{
-		private string mark;
+		private char mark;
 		private DualConverter converter;
-		private LegalMoveEvaluator LegalMoveHandler;
-		private readonly IGetInput _iGetInput;
-		public string Mark => mark;
+		private readonly IGetInput<int> _iGetInput;
 
-		public ComputerPlayer(IGetInput iGetInput)
+		public char Mark => mark;
+
+		public EasyComputerPlayer(IGetInput<int> iGetInput)
 		{
 			mark = Marks.Nought;
 			_iGetInput = iGetInput;

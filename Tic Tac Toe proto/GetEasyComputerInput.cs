@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class GetComputerInput:IGetInput
+	public class GetEasyComputerInput:IGetInput<int>
 	{
 		private List<int> options;
 
-		public GetComputerInput()
+		public GetEasyComputerInput()
 		{
 			options = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 		}

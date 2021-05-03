@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class GetUserInput:IGetInput
+	public class GetHumanInput:IGetInput<int>
 	{
 		private ErrorHandling errHandler;
-		public GetUserInput()
+		public GetHumanInput()
 		{
 			errHandler = new ErrorHandling();
 		}

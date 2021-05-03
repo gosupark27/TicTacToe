@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentAssertions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Tic_Tac_Toe_proto;
@@ -9,14 +10,16 @@ namespace TicTacToe.tests
 	public class BoardTests
 	{
 		[Theory, MemberData(nameof(SplitBoardData))]
-		public void CheckPosition_EmptyorTaken(Position testPosition, String[,] testBoard, bool expected)
+		public void UpdateBoardState_WithMarker(char[,] testBoard, char[,] expected, Position testPosition, IPlayer player)
 		{
 			// Arrange
 			Board board = new Board();
+			board.BoardState = testBoard;
 			// Act
-			var actual = board.CheckPosition(testPosition, testBoard);
+			board.UpdateBoardState(player.Mark, testPosition);
+			var actual = board.BoardState;
 			// Assert 
-			Assert.Equal(expected, actual);
+			expected.Should().BeEquivalentTo(actual);
 		}
 
 		public static IEnumerable<object[]> SplitBoardData
@@ -28,25 +31,27 @@ namespace TicTacToe.tests
 
 				return new[]
 				{
-					new object[] 
+					new object[]
 					{
-						new Position(0,0),
-						board.BoardState = new string[,]{ { " ", " ", " " }, { " ", " ", " " }, { " ", " ", " " } },
-						true
+						board.BoardState = new char[,]{ { 'X', ' ', 'O' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
+						board.BoardState = new char[,]{ { 'X', ' ', 'O' }, { 'X', ' ', ' ' }, { ' ', ' ', ' ' } },
+						new Position(1,0),
+						new HumanPlayer(new GetHumanInput())
 					},
 					new object[]
 					{
-						new Position(0,0),
-						board.BoardState = new string[,]{ { "X", " ", " " }, { " ", " ", " " }, { " ", " ", " " } },
-						false
-					},
-					new object[]
-					{
+						board.BoardState = new char[,]{ { 'X', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
+						board.BoardState = new char[,]{ { 'X', ' ', ' ' }, { ' ', 'O', ' ' }, { ' ', ' ', ' ' } },
 						new Position(1,1),
-						board.BoardState = new string[,]{ { "X", "X", "O" }, { "O", "X", "O" }, { "X", "O", "O" } },
-						false
+						new EasyComputerPlayer(new GetEasyComputerInput())
 					},
-
+					new object[]
+					{
+						board.BoardState = new char[,]{ { 'X', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
+						board.BoardState = new char[,]{ { 'O', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
+						new Position(0,0),
+						new EasyComputerPlayer(new GetEasyComputerInput())
+					},
 				};
 			}
 		}

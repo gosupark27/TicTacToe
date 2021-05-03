@@ -6,12 +6,13 @@ namespace Tic_Tac_Toe_proto
 {
 	public class HumanPlayer : IPlayer
 	{
-		private String mark;
-		private readonly IGetInput _iGetInput;
+		private char mark;
+		private readonly IGetInput<int> _iGetInput;
 		private DualConverter converter;
-		public string Mark => mark;
-
-		public HumanPlayer(IGetInput iGetInput)
+		private int turn;
+		public char Mark => mark;
+		
+		public HumanPlayer(IGetInput<int> iGetInput)
 		{
 			mark = Marks.Cross;
 			_iGetInput = iGetInput;
@@ -23,6 +24,5 @@ namespace Tic_Tac_Toe_proto
 			var boardSquare = _iGetInput.GetGameBoardSquare();
 			return converter.ConvertSquareToPosition(boardSquare);
 		}
-
 	}
 }
