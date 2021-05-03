@@ -22,7 +22,6 @@ namespace Tic_Tac_Toe_proto
 			if (CheckTerminalNode(node))
 			{
 				var gameState = new GameState(node);
-				//var terminalValue = (lineBoardEval.Evaluate() > 0) ? lineBoardEval.Evaluate() - depth : lineBoardEval.Evaluate() + depth;
 				if (gameState.EvaluateBoard() == 0)
 					return 0;
 				return gameState.EvaluateBoard();

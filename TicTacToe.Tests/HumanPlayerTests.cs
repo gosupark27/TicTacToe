@@ -1,8 +1,6 @@
 ﻿using FluentAssertions;
 using Moq;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Tic_Tac_Toe_proto;
 using Xunit;
 

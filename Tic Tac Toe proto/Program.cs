@@ -8,7 +8,7 @@ namespace Tic_Tac_Toe_proto
 		static void Main(string[] args)
 		{
 			// WELCOME SCREEN
-			Screen scrn = new Screen();
+			ScreenRenderer scrn = new ScreenRenderer();
 			scrn.Message = "In order to place your marker on a particular square press 1 - 9";
 			scrn.DisplayExampleScreen();
 

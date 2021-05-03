@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class Screen
+	public class ScreenRenderer
 	{
 		private string message;
 		public String Message
