@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class GetImpossibleComputerInput : IGetInput<char[,]>
+	public class GetComputerInput : IGetInput<char[,]>
 	{
 		private char[,] board;
 
-		public GetImpossibleComputerInput(char[,] board)
+		public GetComputerInput(char[,] board)
 		{
 			this.board = board;
 		}

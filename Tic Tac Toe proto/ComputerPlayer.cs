@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Tic_Tac_Toe_proto
 {
-	public class ImpossibleComputerPlayer : IPlayer
+	public class ComputerPlayer : IPlayer
 	{
 		private char mark;
 		private readonly IGetInput<char[,]> _iGetInput;
@@ -14,7 +14,7 @@ namespace Tic_Tac_Toe_proto
 		public char Mark => mark;
 
 
-		public ImpossibleComputerPlayer(IGetInput<char[,]> iGetInput)
+		public ComputerPlayer(IGetInput<char[,]> iGetInput)
 		{
 			mark = Marks.Nought;
 			_iGetInput = iGetInput;

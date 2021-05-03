@@ -7,7 +7,6 @@ namespace Tic_Tac_Toe_proto
 	public class Screen
 	{
 		private string message;
-		private bool showMessage;
 		public String Message
 		{
 			get
@@ -19,14 +18,6 @@ namespace Tic_Tac_Toe_proto
 				message = value;
 			}
 		}
-
-		public bool ShowMessage
-		{
-			set
-			{
-				showMessage = value;
-			}
-		}
 		public void DisplayExampleScreen()
 		{
 			Console.WriteLine("Let's play a game of Tic Tac Toe!\n");
@@ -35,7 +26,7 @@ namespace Tic_Tac_Toe_proto
 			Console.WriteLine(" 4 | 5 | 6 ");
 			Console.WriteLine("---+---+---");
 			Console.WriteLine(" 7 | 8 | 9 ");
-			Console.WriteLine($"{(showMessage ? $"\nInstructions:\n{message}\n" : "")}");
+			Console.WriteLine($"\nInstructions:\n{message}\n");
 			
 		}
 

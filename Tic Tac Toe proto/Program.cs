@@ -9,24 +9,19 @@ namespace Tic_Tac_Toe_proto
 		{
 			// WELCOME SCREEN
 			Screen scrn = new Screen();
-			scrn.ShowMessage = false;
 			scrn.Message = "In order to place your marker on a particular square press 1 - 9";
 			scrn.DisplayExampleScreen();
 
 			while (true)
 			{
-
 				// NEW GAME
-				ConfigureGame config = new ConfigureGame();
 				Board gameBoard = new Board();
-				IPlayer player2 = config.ConfigureAIPlayer(gameBoard.BoardState);
-				scrn.ShowMessage = true;
-				scrn.DisplayExampleScreen();
 				BoardRenderer br = new BoardRenderer();
 				br.DrawEmptyBoard();
 
 				// Initialize players & assets
 				HumanPlayer player1 = new HumanPlayer(new GetHumanInput());
+				ComputerPlayer player2 = new ComputerPlayer(new GetComputerInput(gameBoard.BoardState));
 				EndGameEvaluator gameEvaluator = new EndGameEvaluator(gameBoard.BoardState);
 				LegalMoveEvaluator LegalMoveHandler = new LegalMoveEvaluator(gameBoard.BoardState);
 				ConsoleKey key;
@@ -72,7 +67,6 @@ namespace Tic_Tac_Toe_proto
 				if (key == ConsoleKey.R)
 				{
 					Console.Clear();
-					scrn.ShowMessage = false;
 					scrn.Message = "In order to place your marker on a particular square press 1 - 9";
 					scrn.DisplayExampleScreen();
 					continue;
