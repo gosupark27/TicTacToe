@@ -9,7 +9,7 @@ namespace TicTacToe.tests
 {
 	public class BoardTests
 	{
-		[Theory, MemberData(nameof(SplitBoardData))]
+		[Theory, MemberData(nameof(UpdateBoardStateData))]
 		public void UpdateBoardState_WithMarker(char[,] testBoard, char[,] expected, Position testPosition, IPlayer player)
 		{
 			// Arrange
@@ -22,7 +22,7 @@ namespace TicTacToe.tests
 			expected.Should().BeEquivalentTo(actual);
 		}
 
-		public static IEnumerable<object[]> SplitBoardData
+		public static IEnumerable<object[]> UpdateBoardStateData
 		{
 
 			get
@@ -43,14 +43,14 @@ namespace TicTacToe.tests
 						board.BoardState = new char[,]{ { 'X', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
 						board.BoardState = new char[,]{ { 'X', ' ', ' ' }, { ' ', 'O', ' ' }, { ' ', ' ', ' ' } },
 						new Position(1,1),
-						new EasyComputerPlayer(new GetEasyComputerInput())
+						new ComputerPlayer(new GetComputerInput(new char[,]{}))
 					},
 					new object[]
 					{
 						board.BoardState = new char[,]{ { 'X', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
 						board.BoardState = new char[,]{ { 'O', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
 						new Position(0,0),
-						new EasyComputerPlayer(new GetEasyComputerInput())
+						new ComputerPlayer(new GetComputerInput(new char[,]{}))
 					},
 				};
 			}

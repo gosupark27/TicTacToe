@@ -9,20 +9,19 @@ namespace Tic_Tac_Toe_proto
 	{
 		DualConverter converter = new();
 		
-		public bool CheckTerminalNode(char[,] node)
+		private bool CheckTerminalNode(char[,] node)
 		{
 			var gameState = new GameState(node);
 			return gameState.CheckWin() || !gameState.CheckEmptySquares();
 		}
 		// MiniMax Evaluate Func
 		// Refactor: Need to have another player?? Or just pass in the player...to the func
-		public double MiniMax(char[,] node, int depth, bool isMaximizer)
+		private double MiniMax(char[,] node, int depth, bool isMaximizer)
 		{
 			// Base case 
 			if (CheckTerminalNode(node))
 			{
 				var gameState = new GameState(node);
-				//var terminalValue = (lineBoardEval.Evaluate() > 0) ? lineBoardEval.Evaluate() - depth : lineBoardEval.Evaluate() + depth;
 				if (gameState.EvaluateBoard() == 0)
 					return 0;
 				return gameState.EvaluateBoard();

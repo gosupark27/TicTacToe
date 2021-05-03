@@ -11,6 +11,7 @@ namespace Tic_Tac_Toe_proto
 		{
 			errHandler = new ErrorHandling();
 		}
+
 		public int GetGameBoardSquare()
 		{
 			Console.WriteLine("\nMake a move:");
