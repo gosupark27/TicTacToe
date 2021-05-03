@@ -96,5 +96,42 @@ namespace TicTacToe.tests
 				};
 			}
 		}
+
+		[Theory, MemberData(nameof(CheckEmptySquaresData))]
+		public void CheckEmptySquares_CurrentBoardState(char[,] testValue, bool expected)
+		{
+			// Arrange 
+			GameState game = new GameState(testValue);
+			// Act
+			var actual = game.CheckEmptySquares();
+			// Assert
+			Assert.Equal(expected, actual);
+		}
+
+		public static IEnumerable<object[]> CheckEmptySquaresData
+		{
+			get
+			{
+				return new[]
+				{
+					new object[]
+					{
+						new char[,]{ { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } },
+						true
+					},
+					// 'X' wins but board is still not empty
+					new object[]
+					{
+						new char[,]{ { 'X', 'O', ' ' }, { 'X', 'O', ' ' }, { 'X', ' ', ' ' } },
+						true
+					},
+					new object[]
+					{
+						new char[,]{ { 'X', 'O', 'X' }, { 'X', 'O', 'O' }, { 'O', 'X', 'O' } },
+						false
+					},
+				};
+			}
+		}
 	}
 }
