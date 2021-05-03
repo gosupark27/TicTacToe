@@ -31,16 +31,14 @@ namespace Tic_Tac_Toe_proto
 			turn = true;
 		}
 
-		// Refactor: Need shallow copies of the board b/c we need to populate the child node list for possible boardstates
-		public Board ShallowCopy()
-		{
-			return (Board)this.MemberwiseClone();
-		}
-
 		public void UpdateBoardState(char mark, Position position)
 		{
 			boardState.SetValue(mark, position.Row, position.Column);
-			// Maybe call a SetTurn() method? instead of having this side effect yikes.
+			SetTurn();
+		}
+
+		private void SetTurn()
+		{
 			turn = !turn;
 		}
 	}
