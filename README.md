@@ -367,7 +367,7 @@ public bool CheckWin()
 ```
 
 ## Links
-- Demo: ~~https://your.github.com/awesome-project/~~ (*Coming Soon*)
+- Demo: *Coming Soon*
 - Repository: https://github.com/gosupark27/TicTacToe
 - Trello: https://trello.com/b/wo2q91GS/tic-tac-toe
 
