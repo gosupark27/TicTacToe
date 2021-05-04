@@ -7,11 +7,19 @@ namespace Tic_Tac_Toe_proto
 	public class GetHumanInput:IGetInput<int>
 	{
 		private ErrorHandling errHandler;
+
+		/**
+		 * Represents input from human player. 
+		 * @constructor
+		 */
 		public GetHumanInput()
 		{
 			errHandler = new ErrorHandling();
 		}
 
+		/**
+		 * Retrieves the square the player wants marked.
+		 */
 		public int GetGameBoardSquare()
 		{
 			Console.WriteLine("\nMake a move:");

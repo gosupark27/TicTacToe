@@ -12,7 +12,11 @@ namespace Tic_Tac_Toe_proto
 		private char[,] board;
 		public char Mark => mark;
 
-
+		/*
+		 * Represents the AI.
+		 * @constructor
+		 * @param {IGetInput<char[,]>} iGetInput - Gets the ComputerInput.
+		 */
 		public ComputerPlayer(IGetInput<char[,]> iGetInput)
 		{
 			mark = Marks.Nought;
@@ -21,7 +25,9 @@ namespace Tic_Tac_Toe_proto
 			board = _iGetInput.GetGameBoardSquare();
 		}
 
-
+		/**
+		 * Uses minimax algorithm to find the optimal move. 
+		 */
 		public Position MakeMove()
 		{
 			return miniMax.FindBestMove(board);

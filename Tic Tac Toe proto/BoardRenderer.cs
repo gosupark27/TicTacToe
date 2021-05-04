@@ -6,6 +6,9 @@ namespace Tic_Tac_Toe_proto
 {
 	public class BoardRenderer
 	{
+		/**
+		 * Displays game board of a new game.
+		 */
 		public void DrawEmptyBoard()
 		{
 			Console.WriteLine("   |   |   ");
@@ -15,6 +18,10 @@ namespace Tic_Tac_Toe_proto
 			Console.WriteLine("   |   |   ");
 		}
 
+		/**
+		 * Renders a new board that reflect the board state.
+		 * @param {char[,]} board - the current board state. 
+		 */
 		public void RenderBoard(char[,] board)
 		{
 			Console.WriteLine($" {board[0,0]} | {board[0,1]} | {board[0,2]} ");
