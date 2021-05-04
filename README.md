@@ -9,6 +9,7 @@ Also, in this game the user will be playing against an *impossible AI*, which is
 
 # Table of Contents
 - [Tic Tac Toe](#tic-tac-toe)
+  * [Playthrough](#playthrough)
   * [Design](#design)
     + [Flowchart](#flowchart)
     + [Class Diagram](#class-diagram)
@@ -19,9 +20,12 @@ Also, in this game the user will be playing against an *impossible AI*, which is
     + [Solution to challenge #1](#solution1)
     + [Solution to challenge #2](#solution2)
     + [Solution to challenge #3](#solution3)
-  * [Playthrough](#playthrough)
   * [Links](#links)
   * [License](#license)
+
+## Playthrough
+
+![tic _tac_toe_demo](https://user-images.githubusercontent.com/59072282/116927626-c0db8c00-ac10-11eb-835f-4ce5dcac4d81.gif)
 
 ## Design
 
@@ -349,11 +353,6 @@ public bool CheckWin()
       CheckAnyLine(0, 4) || CheckAnyLine(2, 2);
 }
 ```
-
-## Playthrough
-
-![tic _tac_toe_demo](https://user-images.githubusercontent.com/59072282/116927626-c0db8c00-ac10-11eb-835f-4ce5dcac4d81.gif)
-
 
 ## Links
 
