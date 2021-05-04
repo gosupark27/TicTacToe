@@ -11,11 +11,20 @@ namespace Tic_Tac_Toe_proto
 
 		public bool IsLegal => isLegal;
 
+		/**
+		 * Represents handler for checking legal moves
+		 * @constructor
+		 * @param {char[,]} board - current board state
+		 */
 		public LegalMoveEvaluator(char[,] board)
 		{
 			this.board = board;
 		}
 		
+		/**
+		 * Check to see if the move is legal or not 
+		 * @param {Position} position - Represents the square to be marked 
+		 */
 		public void CheckPosition(Position position)
 		{
 			var square = (char)board.GetValue(position.Row, position.Column);

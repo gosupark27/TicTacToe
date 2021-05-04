@@ -13,10 +13,18 @@ namespace Tic_Tac_Toe_proto
 			get => board;
 		}
 
+		/**
+		 * Represents the input from computer. 
+		 * @constructor
+		 */
 		public GetComputerInput(char[,] board)
 		{
 			this.board = board;
 		}
+
+		/**
+		 * Gets the current board state.
+		 */
 		public char[,] GetGameBoardSquare()
 		{
 			return board;

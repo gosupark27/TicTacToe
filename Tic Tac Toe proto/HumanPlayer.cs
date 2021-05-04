@@ -12,6 +12,11 @@ namespace Tic_Tac_Toe_proto
 
 		public char Mark => mark;
 		
+		/**
+		 * Represents the human player. 
+		 * @constructor 
+		 * @param {IGetInput<int>} iGetInput - Gets HumanInput. 
+		 */
 		public HumanPlayer(IGetInput<int> iGetInput)
 		{
 			mark = Marks.Cross;
@@ -19,6 +24,9 @@ namespace Tic_Tac_Toe_proto
 			converter = new DualConverter();
 		}
 
+		/**
+		 * Gets the board square to place a marker. 
+		 */
 		public Position MakeMove()
 		{
 			var boardSquare = _iGetInput.GetGameBoardSquare();

@@ -18,6 +18,10 @@ namespace Tic_Tac_Toe_proto
 				message = value;
 			}
 		}
+
+		/*
+		 * Displays instruction and board with square numbers. 
+		 */
 		public void DisplayExampleScreen()
 		{
 			Console.WriteLine("Let's play a game of Tic Tac Toe!\n");
@@ -29,12 +33,18 @@ namespace Tic_Tac_Toe_proto
 			Console.WriteLine($"\nInstructions:\n{message}\n");
 			
 		}
-
+		
+		/**
+		 * Displays a message to console. 
+		 */
 		public void DisplayResultScreen()
 		{
 			Console.WriteLine(message);
 		}
 
+		/**
+		 * Displays a board square error. 
+		 */
 		public void DisplayErrorScreen()
 		{
 			Console.Clear();

@@ -25,6 +25,12 @@ namespace Tic_Tac_Toe_proto
 			}
 		}
 
+		/**
+		 * Representation of a 2D board square. 
+		 * @constructor
+		 * @param {int} row - represents the x-coordinate.
+		 * @param {int} column - represents the y-coordinate.
+		 */
 		public Position(int row = 0, int column = 0)
 		{
 			this.row = row;

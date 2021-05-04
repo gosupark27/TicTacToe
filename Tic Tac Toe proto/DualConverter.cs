@@ -6,6 +6,10 @@ namespace Tic_Tac_Toe_proto
 {
 	public class DualConverter
 	{
+		/*
+		 * Returns a square representation of (row, column). 
+		 * @param {Position} position - a (row, column) representation of a board square. 
+		 */
 		public int ConvertPositionToSquare(Position position)
 		{
 			if (position.Row == 0 && position.Column == 0) { return 1; }
@@ -19,6 +23,11 @@ namespace Tic_Tac_Toe_proto
 			else if (position.Row == 2 && position.Column == 2) { return 9; }
 			else { return -1; }
 		}
+
+		/**
+		 * Returns a (row, column) representation of a board square. 
+		 * @param {int} square - represents game board square, e.g. 1-9.
+		 */
 		public Position ConvertSquareToPosition(int square)
 		{
 			switch (square)

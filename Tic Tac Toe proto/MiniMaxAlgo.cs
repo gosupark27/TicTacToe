@@ -9,13 +9,22 @@ namespace Tic_Tac_Toe_proto
 	{
 		DualConverter converter = new();
 		
+		/**
+		 * Checks to see if current board state ends in a tie or a win.
+		 * @param {char[,]} node - The current board state. 
+		 */
 		private bool CheckTerminalNode(char[,] node)
 		{
 			var gameState = new GameState(node);
 			return gameState.CheckWin() || !gameState.CheckEmptySquares();
 		}
-		// MiniMax Evaluate Func
-		// Refactor: Need to have another player?? Or just pass in the player...to the func
+		
+		/**
+		 * MiniMax Algorithm
+		 * @param {char[,]} node - The current board state.
+		 * @param {int} depth - The depth or level of the decision tree. 
+		 * @param {bool} isMaximizer - Determines whether to get max or min value.
+		 */
 		private double MiniMax(char[,] node, int depth, bool isMaximizer)
 		{
 			// Base case 
@@ -36,7 +45,6 @@ namespace Tic_Tac_Toe_proto
 					if (char.IsWhiteSpace(child))
 					{
 						var position = converter.ConvertSquareToPosition(index);
-						// HumanPlayer.Mark or player1.Mark ('X')
 						node[position.Row, position.Column] = 'X';
 						maxValue = Math.Max(maxValue, MiniMax(node, depth + 1, false));
 						node[position.Row, position.Column] = ' ';
@@ -54,7 +62,6 @@ namespace Tic_Tac_Toe_proto
 					if (char.IsWhiteSpace(child))
 					{
 						var position = converter.ConvertSquareToPosition(index);
-						// ComputerPlayer.Mark or player2.Mark ('O')
 						node[position.Row, position.Column] = 'O';
 						minValue = Math.Min(minValue, MiniMax(node, depth + 1, true));
 						node[position.Row, position.Column] = ' ';
@@ -65,26 +72,22 @@ namespace Tic_Tac_Toe_proto
 			}
 		}
 
-		// Is IPlayer param necessary? Can just use isMaximizer to initialize the player type
+		/**
+		 * Given the current board state, find the most optimal move.
+		 * @param {char[,]} board - The current board state.
+		 */
 		public Position FindBestMove(char[,] board)
 		{
-			// Since this is for the computer, e.g.the 'minimizer' we want the 
-			// lowest possible score!
 			double bestValue = double.PositiveInfinity;
 			var bestMove = new Position(-1,-1);
-			//if (player == null)
-			//{
-			//	player = (isMaximizer) ? new HumanPlayer(new GetHumanInput()) : new EasyComputerPlayer(new GetEasyComputerInput());
-			//}
-
 			int index = 1;
+
 			foreach (var square in board)
 			{
 				if (char.IsWhiteSpace(square))
 				{
 					var position = converter.ConvertSquareToPosition(index);
 					board[position.Row, position.Column] = 'O';
-					// depth should be player.Turn 
 					double nextMoveValue = MiniMax(board, 0, true);
 					board[position.Row, position.Column] = ' ';
 					if (nextMoveValue < bestValue)
