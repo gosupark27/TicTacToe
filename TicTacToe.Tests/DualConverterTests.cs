@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentAssertions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Tic_Tac_Toe_proto;
@@ -87,7 +88,7 @@ namespace TicTacToe.tests
 			// Act
 			var actual = converter.ConvertSquareToPosition(testValue);
 			// Assert
-			Assert.Equal(expected, actual);
+			expected.Should().BeEquivalentTo(actual);
 		}
 
 		public static IEnumerable<object[]> ConvertSquareToPositionData
