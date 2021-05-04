@@ -34,8 +34,9 @@ Since this project is fairly simple in terms of the gameplay and complexity, I d
 
 ![flowchart](https://user-images.githubusercontent.com/59072282/116512779-64c5e000-a87d-11eb-8c13-988e13949568.png)
 
-Based on the flow chart, I broke down the tic tac toe game into objects. 
-The *main objects* I determined were:
+Based on the flow chart, I broke down the tic tac toe game into classes. 
+The *main classes* I identified were:
+
   - Board 
   - Players
   - Renderers
@@ -43,14 +44,14 @@ The *main objects* I determined were:
   - Game State/Error Handlers
 
 ### Class Diagram
-Here is a class diagram of the tic tac toe application generated in Visual Studio:
+Here is a class diagram of the tic tac toe application:
 
 ![ClassDiagram1](https://user-images.githubusercontent.com/59072282/116908607-f6c04680-abf7-11eb-93c7-8d1abe103f86.png)
 
 ### Iteration: 
 1. Get tic tac toe board to render on the console and be able to place a marker on a square. 
-2. Be able to keep track of turns and alternate between 'X' and 'O'. Also, play against a simple AI that makes random moves based on a list of empty squares. 
-3. Implement *minimax algorithm* and create an unbeatable AI. 
+2. Be able to keep track of turns and alternate between 'X' and 'O'. Also, play against a simple AI that makes random moves based on a list of available (*empty*) squares. 
+3. Implement the *minimax algorithm* and create an unbeatable AI. 
 
 ## Features
 
@@ -67,20 +68,29 @@ Here are some of the notable challenges I faced while creating the tic tac toe a
 
 1. Creating an **unbeatable AI** 
 2. Writing **unit tests**
-3. How to check for a **win**
+3. How to **check for a win**
 
 
 ## Solutions
 
 
 ### Solution to challenge #1 <a name="solution1"/>
-The minimax algorithm was implemented to create an AI that was impossible to beat. The core idea of the minimax algorithm is that based on the *current board state* the algorithm recursively searches through the decision tree starting from the **terminal nodes**, which have been evaluated to a given value (+1, -1, 0), and depending on whether the algorithm is *minimizing* or *maximizing* decides what value to pick for the **parent node**. 
+The minimax algorithm was implemented to create an AI that is impossible to beat. The **minimax** is an algorithm that searches to a certain depth (DFS) of a game decision tree and then it begins assigning values to the nodes at that level, *i.e. **terminal nodes***. 
 
-Here's a diagram illustrating what the decision tree looks like: 
+Then the algorithm *recursively* assigns values as it climbs back up to the root node. Once the search is complete, the minimax algorithm evaluates the best move for the current board position. 
+
+Also, the levels of the game decision tree alternate between `X` and `O` making a move. As a result, when the algorithm is evaluating the best move for that particular turn, it will either try to *maximize* or *minimize* the value when considering all the possible board positions. 
+
+Here is a diagram illustrating the game decision tree
 
 ![tic tac toe decision tree](https://user-images.githubusercontent.com/59072282/116911370-a77c1500-abfb-11eb-8502-996662eedd4c.png)
 
-In other words, the AI is able to map out all future moves and determine which move is the most *optimal* considering the board position. This is why the AI will not pick a move that will cause it to lose. 
+and then here is how the minimax algorithm works in finding the most *optimal* move
+
+![game decision tree eval](https://user-images.githubusercontent.com/59072282/116963315-61579d80-ac5d-11eb-9043-3c13c606e1a9.png)
+
+
+In other words, the AI is able to map out all future moves and determine which move will result in a tie or a win. Hence, the impossible AI will never make a *losing* move.
 
 Based on the provided pseudocode shown below:
 
@@ -152,11 +162,13 @@ private double MiniMax(char[,] node, int depth, bool isMaximizer)
 }
 ```
 
-One issue I faced was figuring out how I could fill in the square with a `X` or `O` for each empty space on the board and not mutate the original board. The solution was to find the `position` of the empty square and then assign a `X` or `O` to it and after calling `minimax` revert the square back to an empty space. 
+One issue I faced while implementing the algorithm was figuring out how to temporarily fill in an empty square with a marker, *e.g.`X` or `O`* and then revert the board back to its original state. I continued to have the original board mutate through each iteration of the `for` loop and consequently I was unable to go through all the possible board positions. Eventually, the solution I came up with was to find the `position` of the empty square and then assign a `X` or `O` to it and after calling the `minimax` change the square back to an empty space. 
 
 ### Solution to challenge #2 <a name="solution2"/>
 
-When it came to writing unit tests I used xUnit, FluentAssertions, and Moq as my testing/mocking frameworks. I ran into issues when trying to test a method that invokes an instance method of an object created inside, something like this: 
+When it came to writing unit tests I used xUnit, FluentAssertions, and Moq as my testing/mocking frameworks. I ran into issues when testing a particular method where it would invoke an instance method of an object that was instantiated inside of the method body. 
+
+It looks something like this:
 
 ```
 class A
@@ -233,12 +245,12 @@ When I was creating the `board` class I decided to have a `Position` object that
 
 ![tic tac toe grid ](https://user-images.githubusercontent.com/59072282/116920367-64c03a00-ac07-11eb-8746-103c0a0e6d50.png)
 
-My solution to checking for wins was to convert my 2D (`char[,]`) array into a 1D array and check for *winning* lines or rows. 
+My solution to checking for wins was to convert my 2D (`char[,]`) array into a 1D `char[]` array and check for *winning* lines or rows. 
 The converted board is called a `LineBoard` and it would look something like this: `['0','1','2','3','4','5','6','7','8']`.
 
-In Tic Tac Toe, there are **3** ways of making a three-in-a-row that results in a win: horizontally, vertically and diagonally. Consequently, there are *eight* possible combinations to win on the board. 
+In the game of Tic Tac Toe, there are **3** ways of making a row that results in a win: horizontally, vertically, or diagonally. Now, based on the `LineBoard`, there are *eight* possible combinations.
 
-Using the `LineBoard` here are the list of winning combinations using the indices to represent the *winning row*. 
+Here are the winning combinations using the indices of the `LineBoard` to represent the *winning row*. 
 
 **Horizontal Lines**
 - [0,1,2]
@@ -274,7 +286,7 @@ private bool IsThreeInARow(int i, int j, int k, char mark)
 }
 ```
 
-I also had to consider cases when the board had a row of empty squares, in which case I returned `false` as this was not considered as a win. 
+I also had to consider cases when the board had a row of empty squares, in which case I returned `false` as this was not considered a win. 
 
 *Also, as I'm writing this up I realize that I am repeating myself in the code above with the first `if` statement checking to see if the marker is a whitespace and then later checking to see that the `mark` is not a whitespace in the subsequent `else if` statement.* 
 
@@ -338,7 +350,7 @@ private bool CheckVertical(int start)
 > [2,4,6] **anti-diagonal line**
 > 
 
-Interestingly, there is no method to handle the diagonal lines. Instead, I directly call on `CheckAnyLine`. 
+Interestingly, I did not have to write a method to handle the diagonal lines. 
 
 For the *diagonal* line, I call `CheckAnyLine(0,4)` with a `start` of **0** and `increment` of **4**.
 
@@ -355,11 +367,6 @@ public bool CheckWin()
 ```
 
 ## Links
-
-Even though this information can be found inside the project on machine-readable
-format like in a .json file, it's good to include a summary of most useful
-links to humans using your project. You can include links like:
-
 - Demo: ~~https://your.github.com/awesome-project/~~ (*Coming Soon*)
 - Repository: https://github.com/gosupark27/TicTacToe
 - Trello: https://trello.com/b/wo2q91GS/tic-tac-toe
